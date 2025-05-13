@@ -151,6 +151,9 @@ RobotiqGripperHardwareInterface::on_configure(const rclcpp_lifecycle::State& pre
   RCLCPP_DEBUG(kLogger, "on_configure");
   try
   {
+    RCLCPP_INFO(kLogger, "Waiting for the driver to initalizate");
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+
     if (hardware_interface::SystemInterface::on_configure(previous_state) != CallbackReturn::SUCCESS)
     {
       return CallbackReturn::ERROR;
